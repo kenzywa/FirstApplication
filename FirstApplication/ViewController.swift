@@ -11,40 +11,29 @@ class ViewController: UIViewController {
     
     let firstLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 25))
     
- 
-    
-    
-    override func viewWillLayoutSubviews() {
-        let width = self.view.frame.width
-        let navigationBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 10, width: width , height: 30))
-        self.view.addSubview(navigationBar)
-        let navigationItem = UINavigationItem(title: "My profile")
-        let nextButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.undo, target: nil, action: #selector(selectorX))
-        navigationItem.rightBarButtonItem = nextButton
-        navigationBar.setItems([navigationItem], animated: false)
-        
-    }
+    let secondViewController = SecondViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        
+        let nextButton = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: #selector(selectorX))
+
+        navigationItem.title = "My profile"
+        navigationItem.rightBarButtonItem = nextButton
         
         //let firstLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        firstLabel.center = CGPoint(x: 170, y: 85)
-        firstLabel.textAlignment = .natural
+        firstLabel.center = CGPoint(x: 200, y: 110)
+        firstLabel.textAlignment = .center
         firstLabel.textColor = .blue
         firstLabel.font = .systemFont(ofSize: 20)
         firstLabel.text = "Hello new user!"
         self.view.addSubview(firstLabel)
-        
-        let SecondVC = UIStoryboard( name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController
-        self.navigationController?.pushViewController(SecondVC, animated: true)
-        
-    }
-    @objc func selectorX() {
-        print("hello")
-        
     }
     
-
+    @objc func selectorX() {
+        let secondVC = SecondViewController()
+        navigationController?.pushViewController(secondVC, animated: true)
+    }
 }
 
