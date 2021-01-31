@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         firstLabel.text = "Hello new user!"
         self.view.addSubview(firstLabel)
         
-        let SecondVC = UIStoryboard( name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SecondViewController") as! SecondViewController
+        let SecondVC = UIStoryboard( name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SecondViewController") as? SecondViewController
         self.navigationController?.pushViewController(SecondVC, animated: true)
         
     }
