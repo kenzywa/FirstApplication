@@ -6,9 +6,17 @@ import UIKit
  let surnameLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 90, height: 25))
  
 class SecondViewController: UIViewController {
+    private weak var delegate: DataDelegate?
     
-    weak var delegate: DataDelegate?
-
+    init(delegate: DataDelegate?) {
+        self.delegate = delegate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -48,13 +56,12 @@ class SecondViewController: UIViewController {
         self.view.addSubview(saveButton)
     }
 
-    @objc func didTapSaveButton() {
-        delegate?.toSaveData(name: nameTextField.text!, surname: surnameTextField.text!)
-        
+    @objc private func didTapSaveButton()
+    {
+        guard let name = nameTextField.text,
+              let surname = surnameTextField.text else {
+            return
+        }
+        delegate?.toSaveData(name: name, surname: surname)
     }
-    
-    
-    
-    
-   
 }
